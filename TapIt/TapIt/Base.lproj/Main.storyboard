@@ -1,26 +1,149 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5oz-nw-NO9">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <scene sceneID="2Rx-pT-Y5g">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TapIt" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="5oz-nw-NO9" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="xXl-SM-JsP"/>
+                        <viewControllerLayoutGuide type="bottom" id="OsZ-BK-uyZ"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <view key="view" contentMode="scaleToFill" id="a6E-W8-Pji">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" distribution="fillProportionally" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="QPn-ru-ECC">
+                                <rect key="frame" x="8" y="12" width="405" height="291"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vxZ-xF-JJs">
+                                        <rect key="frame" x="0.0" y="0.0" width="405" height="143"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WMu-oN-MoC">
+                                                <rect key="frame" x="0.0" y="0.0" width="139" height="143"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Tap It" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ut-ea-wO3">
+                                                <rect key="frame" x="139" y="0.0" width="135" height="143"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="135" id="Vhe-S6-wa8"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rld-FC-GIN">
+                                                <rect key="frame" x="274" y="0.0" width="131" height="143"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="V5p-JT-h1Z">
+                                        <rect key="frame" x="0.0" y="148" width="405" height="143"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JdZ-hi-0uG">
+                                                <rect key="frame" x="0.0" y="0.0" width="72" height="143"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Select Mode to Play!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vLF-Ml-1Lj">
+                                                <rect key="frame" x="72" y="54" width="278" height="35"/>
+                                                <fontDescription key="fontDescription" name=".SFNSDisplay" family=".SF NS Display" pointSize="30"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uio-GJ-vt5">
+                                                <rect key="frame" x="350" y="0.0" width="55" height="143"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" distribution="fillEqually" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="MC2-To-5Vt">
+                                <rect key="frame" x="4" y="319" width="406" height="226"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="2NM-NF-fcD">
+                                        <rect key="frame" x="0.0" y="0.0" width="406" height="62"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cpW-2N-kQz">
+                                                <rect key="frame" x="0.0" y="0.0" width="132" height="62"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ijp-Cb-do2">
+                                                <rect key="frame" x="137" y="0.0" width="132" height="62"/>
+                                                <color key="backgroundColor" red="0.86409931279999996" green="0.86409931279999996" blue="0.86409931279999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="Single Player"/>
+                                            </button>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3we-Xc-ONE">
+                                                <rect key="frame" x="274" y="0.0" width="132" height="62"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="het-Ox-E15">
+                                        <rect key="frame" x="0.0" y="82" width="406" height="62"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UuF-4S-GGA">
+                                                <rect key="frame" x="0.0" y="0.0" width="132" height="62"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hc7-uy-FWP">
+                                                <rect key="frame" x="137" y="0.0" width="132" height="62"/>
+                                                <color key="backgroundColor" red="0.86409931279999996" green="0.86409931279999996" blue="0.86409931279999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="Multiplayer"/>
+                                            </button>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ATN-Xz-mjJ">
+                                                <rect key="frame" x="274" y="0.0" width="132" height="62"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="x3s-s2-f4P">
+                                        <rect key="frame" x="0.0" y="164" width="406" height="62"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wbQ-0U-hWq">
+                                                <rect key="frame" x="0.0" y="0.0" width="132" height="62"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fcE-mn-evj">
+                                                <rect key="frame" x="137" y="0.0" width="132" height="62"/>
+                                                <color key="backgroundColor" red="0.86409931279999996" green="0.86409931279999996" blue="0.86409931279999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="Frenzy"/>
+                                            </button>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DCe-VW-iAc">
+                                                <rect key="frame" x="274" y="0.0" width="132" height="62"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2NM-NF-fcD" firstAttribute="leading" secondItem="a6E-W8-Pji" secondAttribute="leadingMargin" constant="-16" id="IDP-r8-16r"/>
+                            <constraint firstItem="x3s-s2-f4P" firstAttribute="leading" secondItem="a6E-W8-Pji" secondAttribute="leadingMargin" constant="-16" id="NJ3-Ij-fZK"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="het-Ox-E15" secondAttribute="trailing" constant="-16" id="O4C-yf-e14"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="2NM-NF-fcD" secondAttribute="trailing" constant="-16" id="n3c-vG-zhj"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="x3s-s2-f4P" secondAttribute="trailing" constant="-16" id="oeZ-Ty-nx4"/>
+                            <constraint firstItem="QPn-ru-ECC" firstAttribute="top" secondItem="xXl-SM-JsP" secondAttribute="bottom" constant="-8" id="rrj-oA-8Pw"/>
+                            <constraint firstItem="het-Ox-E15" firstAttribute="leading" secondItem="a6E-W8-Pji" secondAttribute="leadingMargin" constant="-16" id="xyP-sb-hjU"/>
+                        </constraints>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lqQ-Aj-y8Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="650.72463768115949" y="491.57608695652175"/>
         </scene>
     </scenes>
 </document>
