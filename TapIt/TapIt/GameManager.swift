@@ -33,9 +33,5 @@ class GameManager {
         didRotate = wasRotated
         didShake = wasShook
     }
-    
-    func begin(){
-        //start timer. then pull data somehow? using a delegate?
-    }
-    
+        
 }

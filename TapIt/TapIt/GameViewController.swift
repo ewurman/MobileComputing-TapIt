@@ -14,15 +14,18 @@ class GameViewController: UIViewController {
     @IBOutlet weak var instructionLabel: UILabel!
     
     private var hasStarted = false
+    private var hasLost = false
     private var tapped = false
     private var rotated = false
     private var shook = false
+    
+    var gameTimer: Timer?
     
     let manager = GameManager()
     
     @IBAction func tap(_ sender: UITapGestureRecognizer) {
         if !hasStarted{
-            manager.begin()
+            beginGame()
         }
         else{
             tapped = true
@@ -31,7 +34,29 @@ class GameViewController: UIViewController {
     
     
     
+    func beginGame(){
+        hasStarted = true
+        gameTimer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(runGameCycle), userInfo: nil, repeats: true)
+    }
     
+    func resetGame(){
+        hasStarted = false
+        hasLost = false
+        gameTimer?.invalidate()
+    }
+    
+    func runGameCycle(){
+        if hasStarted{
+            /* Get the desired action from model.
+             * Set label in view to desired action
+             * wait timeInterval then pass values to model to check if correct action occured
+             * update hasLost
+             */
+        }
+        if hasLost{
+            resetGame()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
