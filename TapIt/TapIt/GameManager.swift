@@ -26,6 +26,12 @@ class GameManager {
         2: Actions.Rotate,
         3: Actions.Shake
     ]
+    
+    private var gameActionStrings: Dictionary<Int, String> = [
+        1: "Tap it",
+        2: "Rotate it",
+        3: "Shake it"
+    ]
 
     
     func recieveData(didTap wasTapped: Bool, didRotate wasRotated: Bool, didShake wasShook : Bool){
@@ -33,5 +39,24 @@ class GameManager {
         didRotate = wasRotated
         didShake = wasShook
     }
+    
+    func getInstructionString() -> String{
+        if currentGameActionNum != nil{
+            return gameActionStrings[currentGameActionNum!]!
+        }
+        return "Tap to Begin"
+    }
+    
+    func setNextRound() {
+        resetData()
+        currentGameActionNum = Int(arc4random_uniform(UInt32(gameActions.count)))
+        //get random number from 0 to the number of possible actions exclusive
         
+    }
+    
+    private func resetData(){
+        didTap = false
+        didRotate = false
+        didShake = false
+    }
 }

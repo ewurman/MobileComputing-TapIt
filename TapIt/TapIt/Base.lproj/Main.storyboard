@@ -165,7 +165,7 @@
                         <viewControllerLayoutGuide type="top" id="9eP-Sj-oUZ"/>
                         <viewControllerLayoutGuide type="bottom" id="BiD-Rp-6oQ"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="VYZ-g6-Vps">
+                    <view key="view" contentMode="scaleToFill" id="VYZ-g6-Vps" customClass="GameView" customModule="TapIt" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>

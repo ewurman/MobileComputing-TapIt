@@ -52,11 +52,23 @@ class GameViewController: UIViewController {
              * wait timeInterval then pass values to model to check if correct action occured
              * update hasLost
              */
+            manager.setNextRound()
+            
         }
         if hasLost{
             resetGame()
         }
     }
+    
+    func setInstruction(labelText: String){
+        instructionLabel.text = labelText
+    }
+    
+    func fadeInstruction(){
+        //TODO: all of this
+    }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
