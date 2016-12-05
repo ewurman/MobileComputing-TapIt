@@ -57,6 +57,9 @@ class GameViewController: UIViewController {
         }
     }
     
+    private var speed = 3.0
+    private let roundDuration = 2.0
+    
     var gameTimer: Timer?
     
     let manager = GameManager()
@@ -99,11 +102,16 @@ class GameViewController: UIViewController {
     
  
     func beginGame(){
-        manager.setNextRound()
+        manager.setNextTurn()
         setInstruction(labelText: manager.getInstructionString())
-        fadeInstructionOut()
+        fadeInstructionOut(duration: speed)
         hasStarted = true
-        gameTimer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(runGameCycle), userInfo: nil, repeats: true)
+        newGameTimer()
+
+    }
+    
+    func newGameTimer() {
+        gameTimer = Timer.scheduledTimer(timeInterval: speed, target: self, selector: #selector(runGameCycle), userInfo: nil, repeats: true)
     }
     
     func resetGame(){
@@ -120,10 +128,32 @@ class GameViewController: UIViewController {
                 return
             }
             
-            manager.setNextRound()
+            manager.setNextTurn()
             setScoreLabel()
             setInstruction(labelText: manager.getInstructionString())
-            fadeInstructionOut()
+            fadeInstructionOut(duration: speed)
+            
+            
+            let score = manager.getScore()
+            if score % 3 == 0 && score != 0 {
+                manager.nextRound()
+                speed -= 0.5
+                gameTimer?.invalidate()
+                setInstruction(labelText: "R O U N D  \(manager.getRound())")
+                fadeInstructionOut(duration: roundDuration)
+                if #available(iOS 10.0, *) {
+                    gameTimer = Timer.scheduledTimer(withTimeInterval: roundDuration, repeats: false, block: {_ in
+                        self.manager.setNextTurn()
+                        self.setInstruction(labelText: self.manager.getInstructionString())
+                        self.fadeInstructionOut(duration: self.speed)
+                        self.newGameTimer()
+                    })
+                } else {
+                    // Fallback on earlier versions
+                }
+                
+                
+            }
 
             
             
@@ -147,9 +177,9 @@ class GameViewController: UIViewController {
         instructionLabel.text = labelText
     }
     
-    func fadeInstructionOut(){
+    func fadeInstructionOut(duration: Double){
         //TODO: make the time interval a variable
-        instructionLabel.fadeOut(fadeDuration: 2.0, delayDuration: 1.0)
+        instructionLabel.fadeOut(fadeDuration: duration * 0.75, delayDuration: duration * 0.25)
     }
     
     
