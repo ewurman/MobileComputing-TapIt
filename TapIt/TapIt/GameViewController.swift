@@ -141,7 +141,6 @@ class GameViewController: UIViewController {
     
     func fadeInstructionOut(){
         //TODO: make the time interval a variable
-//        UIView.transition(with: instructionLabel, duration: 3.0, options: UIViewAnimationOptions.curveLinear, animations: {}, completion: nil)
         instructionLabel.fadeOut(fadeDuration: 2.0, delayDuration: 1.0)
     }
     

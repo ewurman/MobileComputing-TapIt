@@ -151,6 +151,7 @@ class GameManager {
     }
     
     private func resetData(){
+        //TODO: add all new variables here
         didTap = false
         didRotate = false
         didShake = false
