@@ -10,7 +10,38 @@ import UIKit
 
 class GameViewController: UIViewController {
 
-    @IBOutlet weak var gameView: UIView!
+    @IBOutlet weak var gameView: UIView! {
+        didSet {
+
+            let swipeUpRecognizer = UISwipeGestureRecognizer(target: manager, action: #selector(manager.swipeUp))
+            swipeUpRecognizer.direction = .up
+            gameView.addGestureRecognizer(swipeUpRecognizer)
+            
+            let swipeDownRecognizer = UISwipeGestureRecognizer(target: manager, action: #selector(manager.swipeDown))
+            swipeDownRecognizer.direction = .down
+            gameView.addGestureRecognizer(swipeDownRecognizer)
+
+            let swipeLeftRecognizer = UISwipeGestureRecognizer(target: manager, action: #selector(manager.swipeLeft))
+            swipeLeftRecognizer.direction = .left
+            gameView.addGestureRecognizer(swipeLeftRecognizer)
+
+            let swipeRightRecognizer = UISwipeGestureRecognizer(target: manager, action: #selector(manager.swipeRight))
+            swipeRightRecognizer.direction = .right
+            gameView.addGestureRecognizer(swipeRightRecognizer)
+
+            
+          /*
+            let sadderSwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(FaceViewController.decreaseHappiness))
+            sadderSwipeGestureRecognizer.direction = .down
+            faceView.addGestureRecognizer(sadderSwipeGestureRecognizer)
+            
+            */
+            //gameView.dataSource = self
+            //updateUI()
+        }
+    }
+    
+    
     @IBOutlet weak var instructionLabel: UILabel!
     
     private var hasStarted = false
@@ -36,6 +67,7 @@ class GameViewController: UIViewController {
             tapped = true
         }
     }
+
     
     @IBAction func redButton(_ sender: UIButton) {
         manager.tappedRed()
@@ -45,9 +77,29 @@ class GameViewController: UIViewController {
         manager.tappedBlue()
     }
     
+    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
+        if(event?.subtype == UIEventSubtype.motionShake) {
+            manager.shake()
+        }
+    }
+    
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        manager.rotate()
+        /*
+        if UIDevice.current.orientation.isLandscape {
+            print("Landscape")
+        } else {
+            print("Portrait")
+        }
+         */
+    }
+    
+ 
     func beginGame(){
         manager.setNextRound()
         setInstruction(labelText: manager.getInstructionString())
+        fadeInstructionOut()
         hasStarted = true
         gameTimer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(runGameCycle), userInfo: nil, repeats: true)
     }
@@ -59,43 +111,49 @@ class GameViewController: UIViewController {
     
     func runGameCycle(){
         if hasStarted{
-            
             manager.nextTurn()
             if hasLost{
                 print("you lose!!")
                 resetGame()
+                return
             }
+            
             manager.setNextRound()
             setInstruction(labelText: manager.getInstructionString())
+            fadeInstructionOut()
+
+            
+            
             /* Get the desired action from model.
              * Set label in view to desired action
              * wait timeInterval then pass values to model to check if correct action occured
              * update hasLost
              */
-            //manager.setNextRound()
             
         }
 
     }
     
     func setInstruction(labelText: String){
+        instructionLabel.alpha = 1.0
         instructionLabel.text = labelText
     }
     
-    func fadeInstruction(){
-        //TODO: all of this
-        
-        //test comment for Jason's pull
-        
+    func fadeInstructionOut(){
+        //TODO: make the time interval a variable
+//        UIView.transition(with: instructionLabel, duration: 3.0, options: UIViewAnimationOptions.curveLinear, animations: {}, completion: nil)
+        instructionLabel.fadeOut(fadeDuration: 2.0, delayDuration: 1.0)
     }
-    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.becomeFirstResponder()
     }
+    
+
+    
+ 
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -177,12 +177,12 @@
                                     <segue destination="5oz-nw-NO9" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="P8T-Vt-tUW"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KRA-JV-99m">
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KRA-JV-99m">
                                 <rect key="frame" x="20" y="62" width="374" height="36"/>
                                 <color key="backgroundColor" red="0.91616742227979275" green="0.91616742227979275" blue="0.91616742227979275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to Begin" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZUB-dL-6Yk">
-                                <rect key="frame" x="20" y="98" width="374" height="36"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Tap to Begin" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZUB-dL-6Yk">
+                                <rect key="frame" x="20" y="106" width="374" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -210,12 +210,11 @@
                             <constraint firstAttribute="trailingMargin" secondItem="KRA-JV-99m" secondAttribute="trailing" id="5oD-Ky-tQY"/>
                             <constraint firstItem="KRA-JV-99m" firstAttribute="leading" secondItem="VYZ-g6-Vps" secondAttribute="leadingMargin" id="7c3-Hi-C2Y"/>
                             <constraint firstItem="0gd-wa-IwF" firstAttribute="leading" secondItem="VYZ-g6-Vps" secondAttribute="leadingMargin" id="9n4-d2-6Wj"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="ZUB-dL-6Yk" secondAttribute="leading" id="Vgf-CV-WbX"/>
-                            <constraint firstItem="KRA-JV-99m" firstAttribute="height" secondItem="ZUB-dL-6Yk" secondAttribute="height" id="WQI-Gw-Y2t"/>
                             <constraint firstItem="KRA-JV-99m" firstAttribute="top" secondItem="0gd-wa-IwF" secondAttribute="bottom" id="ZXo-08-DSg"/>
                             <constraint firstItem="0gd-wa-IwF" firstAttribute="top" secondItem="9eP-Sj-oUZ" secondAttribute="bottom" id="c9B-T4-Nsf"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ZUB-dL-6Yk" secondAttribute="trailing" id="hYI-W6-ZqO"/>
-                            <constraint firstItem="ZUB-dL-6Yk" firstAttribute="top" secondItem="KRA-JV-99m" secondAttribute="bottom" id="sgk-7R-HZa"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="ZUB-dL-6Yk" secondAttribute="leading" id="cC5-Oe-bGy"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ZUB-dL-6Yk" secondAttribute="trailing" id="dvz-kj-Tdu"/>
+                            <constraint firstItem="ZUB-dL-6Yk" firstAttribute="top" secondItem="KRA-JV-99m" secondAttribute="bottom" id="fx8-T6-mGf"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="scs-5n-jXD" appends="YES" id="rw3-wq-Yuh"/>
