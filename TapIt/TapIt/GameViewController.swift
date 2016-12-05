@@ -14,10 +14,15 @@ class GameViewController: UIViewController {
     @IBOutlet weak var instructionLabel: UILabel!
     
     private var hasStarted = false
-    private var hasLost = false
     private var tapped = false
     private var rotated = false
     private var shook = false
+    
+    private var hasLost : Bool {
+        get {
+         return manager.didLose
+        }
+    }
     
     var gameTimer: Timer?
     
@@ -32,32 +37,45 @@ class GameViewController: UIViewController {
         }
     }
     
+    @IBAction func redButton(_ sender: UIButton) {
+        manager.tappedRed()
+    }
     
+    @IBAction func blueButton(_ sender: UIButton) {
+        manager.tappedBlue()
+    }
     
     func beginGame(){
+        manager.setNextRound()
+        setInstruction(labelText: manager.getInstructionString())
         hasStarted = true
         gameTimer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(runGameCycle), userInfo: nil, repeats: true)
     }
     
     func resetGame(){
         hasStarted = false
-        hasLost = false
         gameTimer?.invalidate()
     }
     
     func runGameCycle(){
         if hasStarted{
+            
+            manager.nextTurn()
+            if hasLost{
+                print("you lose!!")
+                resetGame()
+            }
+            manager.setNextRound()
+            setInstruction(labelText: manager.getInstructionString())
             /* Get the desired action from model.
              * Set label in view to desired action
              * wait timeInterval then pass values to model to check if correct action occured
              * update hasLost
              */
-            manager.setNextRound()
+            //manager.setNextRound()
             
         }
-        if hasLost{
-            resetGame()
-        }
+
     }
     
     func setInstruction(labelText: String){
