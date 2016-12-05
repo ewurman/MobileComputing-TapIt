@@ -55,17 +55,17 @@ class GameManager {
     }()
     
     
-    //depreciated
-    private var gameActions: Dictionary<Int, Actions> = [
-        1: Actions.Tap_Red,
-        2: Actions.Tap_Blue,
-        3: Actions.Swipe_Up,
-        4: Actions.Swipe_Down,
-        5: Actions.Swipe_Left,
-        6: Actions.Swipe_Right
-        //3: Actions.Rotate,
-        //4: Actions.Shake
-    ]
+//    //depreciated
+//    private var gameActions: Dictionary<Int, Actions> = [
+//        1: Actions.Tap_Red,
+//        2: Actions.Tap_Blue,
+//        3: Actions.Swipe_Up,
+//        4: Actions.Swipe_Down,
+//        5: Actions.Swipe_Left,
+//        6: Actions.Swipe_Right
+//        //3: Actions.Rotate,
+//        //4: Actions.Shake
+//    ]
     
     private var gameActionStrings: Dictionary<Int, String> = [
         1: "Tap red",
