@@ -44,6 +44,8 @@ class GameViewController: UIViewController {
     
     @IBOutlet weak var instructionLabel: UILabel!
     
+    @IBOutlet weak var scoreLabel: UILabel!
+    
     private var hasStarted = false
     private var tapped = false
     private var rotated = false
@@ -119,6 +121,7 @@ class GameViewController: UIViewController {
             }
             
             manager.setNextRound()
+            setScoreLabel()
             setInstruction(labelText: manager.getInstructionString())
             fadeInstructionOut()
 
@@ -132,6 +135,11 @@ class GameViewController: UIViewController {
             
         }
 
+    }
+    
+    func setScoreLabel() {
+        scoreLabel.alpha = 1.0
+        scoreLabel.text = String( manager.getScore() )
     }
     
     func setInstruction(labelText: String){

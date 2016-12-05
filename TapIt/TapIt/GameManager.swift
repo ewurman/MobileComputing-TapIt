@@ -10,6 +10,9 @@ import Foundation
 
 class GameManager {
     
+    private var score = 0
+    
+    func getScore() -> Int { return score }
     
     //bool checks
     private var didTap = false
@@ -87,14 +90,13 @@ class GameManager {
     }
 
     func setNextRound() {
-        print(GameManager.numberOfActions)
         resetData()
         currentGameActionNum = Int(arc4random_uniform(UInt32(GameManager.numberOfActions))) + 1
         //get random number from 1 to the number of possible actions exclusive
     }
     
     func nextTurn() {
-        if let action = Actions(rawValue: currentGameActionNum!) { //gameActions[currentGameActionNum!] {
+        if let action = Actions(rawValue: currentGameActionNum!) {
             
             switch action {
             case .Tap_Red:
@@ -123,6 +125,7 @@ class GameManager {
                 
             }
         }
+        if !didLose { score += 1 }
     }
     
     
