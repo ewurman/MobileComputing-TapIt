@@ -59,6 +59,7 @@ class GameViewController: UIViewController {
     
     private var speed = 3.0
     private let roundDuration = 2.0
+    private let roundLength = 3
     
     var gameTimer: Timer?
     
@@ -135,7 +136,7 @@ class GameViewController: UIViewController {
             
             
             let score = manager.getScore()
-            if score % 3 == 0 && score != 0 {
+            if score % roundLength == 0 && score != 0 {
                 manager.nextRound()
                 speed -= 0.5
                 gameTimer?.invalidate()
