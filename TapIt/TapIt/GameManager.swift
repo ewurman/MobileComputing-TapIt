@@ -11,8 +11,11 @@ import Foundation
 class GameManager {
     
     private var score = 0
-    
     func getScore() -> Int { return score }
+    
+    private var round = 1
+    func getRound() -> Int { return round }
+    func nextRound() { round += 1 }
     
     //bool checks
     private var didTap = false
@@ -47,7 +50,7 @@ class GameManager {
         case Swipe_Left
         case Swipe_Right
         case Shake
-        case Rotate
+        //case Rotate
     }
     
     //get numberOfActions
@@ -89,7 +92,7 @@ class GameManager {
         return "Tap to Begin"
     }
 
-    func setNextRound() {
+    func setNextTurn() {
         resetData()
         currentGameActionNum = Int(arc4random_uniform(UInt32(GameManager.numberOfActions))) + 1
         //get random number from 1 to the number of possible actions exclusive
@@ -120,9 +123,9 @@ class GameManager {
             case .Shake:
                 if !checkExlusive(check: &didShake) { didLose = true }
             
-            case .Rotate:
+            /*case .Rotate:
                 if !checkExlusive(check: &didRotate) { didLose = true }
-                
+               */
             }
         }
         if !didLose { score += 1 }
