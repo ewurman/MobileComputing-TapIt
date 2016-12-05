@@ -9,6 +9,7 @@
 import UIKit
 
 class GameView: UIView {
+    
 
     /*
     // Only override draw() if you perform custom drawing.
@@ -24,4 +25,13 @@ class GameView: UIView {
     //Erik's Comment 2  -Line 22
     
     
+}
+
+extension UIView{
+
+    func fadeOut(fadeDuration: Double, delayDuration: Double){
+        UIView.animate(withDuration: fadeDuration, delay: delayDuration, options: UIViewAnimationOptions.curveLinear, animations: {
+            self.alpha = 0
+            }, completion: nil)
+    }
 }

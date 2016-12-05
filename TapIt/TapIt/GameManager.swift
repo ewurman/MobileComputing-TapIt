@@ -49,7 +49,7 @@ class GameManager {
     
     func setNextRound() {
         resetData()
-        currentGameActionNum = Int(arc4random_uniform(UInt32(gameActions.count)))
+        currentGameActionNum = Int(arc4random_uniform(UInt32(gameActions.count))) + 1
         //get random number from 0 to the number of possible actions exclusive
         
     }

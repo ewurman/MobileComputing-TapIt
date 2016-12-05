@@ -53,6 +53,8 @@ class GameViewController: UIViewController {
              * update hasLost
              */
             manager.setNextRound()
+            setInstruction(labelText: manager.getInstructionString())
+            fadeInstructionOut()
             
         }
         if hasLost{
@@ -61,14 +63,14 @@ class GameViewController: UIViewController {
     }
     
     func setInstruction(labelText: String){
+        instructionLabel.alpha = 1.0
         instructionLabel.text = labelText
     }
     
-    func fadeInstruction(){
-        //TODO: all of this
-        
-        //test comment for Jason's pull
-        
+    func fadeInstructionOut(){
+        //TODO: make the time interval a variable
+//        UIView.transition(with: instructionLabel, duration: 3.0, options: UIViewAnimationOptions.curveLinear, animations: {}, completion: nil)
+        instructionLabel.fadeOut(fadeDuration: 2.0, delayDuration: 1.0)
     }
     
     
