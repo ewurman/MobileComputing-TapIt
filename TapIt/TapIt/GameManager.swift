@@ -45,10 +45,10 @@ class GameManager {
     enum Actions: Int {
         case Tap_Red = 1
         case Tap_Blue
-        case Swipe_Up
-        case Swipe_Down
-        case Swipe_Left
-        case Swipe_Right
+        //case Swipe_Up
+        //case Swipe_Down
+        //case Swipe_Left
+        //case Swipe_Right
         case Shake
         //case Rotate
     }
@@ -107,7 +107,7 @@ class GameManager {
                 
             case .Tap_Blue:
                 if !checkExlusive(check: &didTapBlue) { didLose = true }
-                
+                /*
             case .Swipe_Up:
                 if !checkExlusive(check: &didSwipeUp) { didLose = true }
 
@@ -119,7 +119,7 @@ class GameManager {
                 
             case .Swipe_Right:
                 if !checkExlusive(check: &didSwipeRight) { didLose = true }
-                
+                */
             case .Shake:
                 if !checkExlusive(check: &didShake) { didLose = true }
             

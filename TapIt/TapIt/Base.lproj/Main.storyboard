@@ -13,7 +13,7 @@
         <!--Menu-->
         <scene sceneID="2Rx-pT-Y5g">
             <objects>
-                <viewController id="5oz-nw-NO9" sceneMemberID="viewController">
+                <viewController id="5oz-nw-NO9" customClass="MenuViewController" customModule="TapIt" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xXl-SM-JsP"/>
                         <viewControllerLayoutGuide type="bottom" id="OsZ-BK-uyZ"/>
@@ -237,6 +237,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Player 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bYf-ds-kzI">
+                                <rect key="frame" x="122" y="566" width="170" height="65"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -274,6 +281,7 @@
                     <connections>
                         <outlet property="gameView" destination="VYZ-g6-Vps" id="hby-AO-KW7"/>
                         <outlet property="instructionLabel" destination="ZUB-dL-6Yk" id="rBW-D0-aVd"/>
+                        <outlet property="playerLabel" destination="bYf-ds-kzI" id="AON-Ln-RwT"/>
                         <outlet property="scoreLabel" destination="eG0-ay-7Vm" id="cuw-YA-sqk"/>
                     </connections>
                 </viewController>
@@ -288,6 +296,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="7fk-cm-EA0"/>
+        <segue reference="ERg-pX-Srj"/>
     </inferredMetricsTieBreakers>
 </document>

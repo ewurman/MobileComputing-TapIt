@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MenuViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +18,27 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        let destinationvc = segue.destination
+        if let gamevc = destinationvc as? GameViewController {
+            if segue.identifier == "Single Player" {
+                gamevc.numPlayers = 1
+            } else {
+                gamevc.numPlayers = 3
+            }
+            
+            for i in 0 ..< gamevc.numPlayers! {
+                let p = Player()
+                p.name = "Player \(i + 1)"
+                gamevc.playersArray.append(p)
+            }
+
+        }
+
+        
     }
 
 

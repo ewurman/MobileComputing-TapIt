@@ -13,31 +13,22 @@ class GameViewController: UIViewController {
     @IBOutlet weak var gameView: UIView! {
         didSet {
 
-            let swipeUpRecognizer = UISwipeGestureRecognizer(target: manager, action: #selector(manager.swipeUp))
+            let swipeUpRecognizer = UISwipeGestureRecognizer(target: manager, action: #selector(manager?.swipeUp))
             swipeUpRecognizer.direction = .up
             gameView.addGestureRecognizer(swipeUpRecognizer)
             
-            let swipeDownRecognizer = UISwipeGestureRecognizer(target: manager, action: #selector(manager.swipeDown))
+            let swipeDownRecognizer = UISwipeGestureRecognizer(target: manager, action: #selector(manager?.swipeDown))
             swipeDownRecognizer.direction = .down
             gameView.addGestureRecognizer(swipeDownRecognizer)
 
-            let swipeLeftRecognizer = UISwipeGestureRecognizer(target: manager, action: #selector(manager.swipeLeft))
+            let swipeLeftRecognizer = UISwipeGestureRecognizer(target: manager, action: #selector(manager?.swipeLeft))
             swipeLeftRecognizer.direction = .left
             gameView.addGestureRecognizer(swipeLeftRecognizer)
 
-            let swipeRightRecognizer = UISwipeGestureRecognizer(target: manager, action: #selector(manager.swipeRight))
+            let swipeRightRecognizer = UISwipeGestureRecognizer(target: manager, action: #selector(manager?.swipeRight))
             swipeRightRecognizer.direction = .right
             gameView.addGestureRecognizer(swipeRightRecognizer)
 
-            
-          /*
-            let sadderSwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(FaceViewController.decreaseHappiness))
-            sadderSwipeGestureRecognizer.direction = .down
-            faceView.addGestureRecognizer(sadderSwipeGestureRecognizer)
-            
-            */
-            //gameView.dataSource = self
-            //updateUI()
         }
     }
     
@@ -46,6 +37,8 @@ class GameViewController: UIViewController {
     
     @IBOutlet weak var scoreLabel: UILabel!
     
+    @IBOutlet weak var playerLabel: UILabel!
+    
     private var hasStarted = false
     private var tapped = false
     private var rotated = false
@@ -53,7 +46,7 @@ class GameViewController: UIViewController {
     
     private var hasLost : Bool {
         get {
-         return manager.didLose
+         return manager!.didLose
         }
     }
     
@@ -63,8 +56,16 @@ class GameViewController: UIViewController {
     
     var gameTimer: Timer?
     
-    let manager = GameManager()
+    var numPlayers: Int?
+    var playersArray = [Player]() {
+        didSet {
+            manager = playersArray[playerPointer].manager
+        }
+    }
+    var playerPointer = 0
     
+    var manager: GameManager?
+
     @IBAction func tap(_ sender: UITapGestureRecognizer) {
         if !hasStarted{
             beginGame()
@@ -76,22 +77,22 @@ class GameViewController: UIViewController {
 
     
     @IBAction func redButton(_ sender: UIButton) {
-        manager.tappedRed()
+        manager?.tappedRed()
     }
     
     @IBAction func blueButton(_ sender: UIButton) {
-        manager.tappedBlue()
+        manager?.tappedBlue()
     }
     
     override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
         if(event?.subtype == UIEventSubtype.motionShake) {
-            manager.shake()
+            manager?.shake()
         }
     }
     
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        manager.rotate()
+        manager?.rotate()
         /*
         if UIDevice.current.orientation.isLandscape {
             print("Landscape")
@@ -103,8 +104,8 @@ class GameViewController: UIViewController {
     
  
     func beginGame(){
-        manager.setNextTurn()
-        setInstruction(labelText: manager.getInstructionString())
+        manager?.setNextTurn()
+        setInstruction(labelText: (manager?.getInstructionString())!)
         fadeInstructionOut(duration: speed)
         hasStarted = true
         newGameTimer()
@@ -120,62 +121,88 @@ class GameViewController: UIViewController {
         gameTimer?.invalidate()
     }
     
+    func nextPlayer() {
+        
+        manager?.nextRound()
+
+        //last player, next actual round
+        if playerPointer == (numPlayers! - 1) {
+            playerPointer = 0
+            manager = playersArray[playerPointer].manager
+            speed -= 0.5
+            gameTimer?.invalidate()
+            setInstruction(labelText: "R O U N D  \(manager!.getRound())")
+            fadeInstructionOut(duration: roundDuration)
+            if #available(iOS 10.0, *) {
+                gameTimer = Timer.scheduledTimer(withTimeInterval: roundDuration, repeats: false, block: {_ in
+                    self.manager?.setNextTurn()
+                    self.setInstruction(labelText: (self.manager?.getInstructionString())!)
+                    self.fadeInstructionOut(duration: self.speed)
+                    self.newGameTimer()
+                })
+            } else {
+                // Fallback on earlier versions
+            }
+        } else {
+            playerPointer += 1
+            manager = playersArray[playerPointer].manager
+            gameTimer?.invalidate()
+            setInstruction(labelText: "Pass to \(playersArray[playerPointer].name)")
+            fadeInstructionOut(duration: roundDuration)
+            if #available(iOS 10.0, *) {
+                gameTimer = Timer.scheduledTimer(withTimeInterval: roundDuration, repeats: false, block: {_ in
+                    self.manager?.setNextTurn()
+                    self.setInstruction(labelText: self.manager!.getInstructionString())
+                    self.fadeInstructionOut(duration: self.speed)
+                    self.newGameTimer()
+                })
+            } else {
+                // Fallback on earlier versions
+            }
+        }
+        
+        setPlayerLabel()
+        setScoreLabel()
+    }
+    
     func runGameCycle(){
         if hasStarted{
-            manager.nextTurn()
+            manager?.nextTurn()
             if hasLost{
                 print("you lose!!")
                 resetGame()
                 return
             }
             
-            manager.setNextTurn()
+            manager?.setNextTurn()
             setScoreLabel()
-            setInstruction(labelText: manager.getInstructionString())
+            setInstruction(labelText: (manager?.getInstructionString())!)
             fadeInstructionOut(duration: speed)
             
             
-            let score = manager.getScore()
-            if score % roundLength == 0 && score != 0 {
-                manager.nextRound()
-                speed -= 0.5
-                gameTimer?.invalidate()
-                setInstruction(labelText: "R O U N D  \(manager.getRound())")
-                fadeInstructionOut(duration: roundDuration)
-                if #available(iOS 10.0, *) {
-                    gameTimer = Timer.scheduledTimer(withTimeInterval: roundDuration, repeats: false, block: {_ in
-                        self.manager.setNextTurn()
-                        self.setInstruction(labelText: self.manager.getInstructionString())
-                        self.fadeInstructionOut(duration: self.speed)
-                        self.newGameTimer()
-                    })
-                } else {
-                    // Fallback on earlier versions
-                }
+            let score = manager?.getScore()
+            if score! % roundLength == 0 && score! != 0 {
                 
-                
+                nextPlayer()
+            
             }
-
-            
-            
-            /* Get the desired action from model.
-             * Set label in view to desired action
-             * wait timeInterval then pass values to model to check if correct action occured
-             * update hasLost
-             */
-            
         }
 
     }
     
     func setScoreLabel() {
         scoreLabel.alpha = 1.0
-        scoreLabel.text = String( manager.getScore() )
+        if let m = manager { scoreLabel.text = String(m.getScore() ) }
     }
     
     func setInstruction(labelText: String){
         instructionLabel.alpha = 1.0
         instructionLabel.text = labelText
+    }
+    
+    func setPlayerLabel() {
+        playerLabel.alpha = 1.0
+        playerLabel.text = playersArray[playerPointer].name
     }
     
     func fadeInstructionOut(duration: Double){
