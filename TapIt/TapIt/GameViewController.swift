@@ -50,7 +50,7 @@ class GameViewController: UIViewController {
         }
     }
     
-    private var speed = 3.0
+    private var speed = 2.0
     private let roundDuration = 2.0
     private let roundLength = 3
     
@@ -116,18 +116,48 @@ class GameViewController: UIViewController {
         gameTimer = Timer.scheduledTimer(timeInterval: speed, target: self, selector: #selector(runGameCycle), userInfo: nil, repeats: true)
     }
     
-    func resetGame(){
-        hasStarted = false
-        gameTimer?.invalidate()
-    }
-    
+
     func nextPlayer() {
         
         manager?.nextRound()
 
-        //last player, next actual round
-        if playerPointer == (numPlayers! - 1) {
+        var isNewRound = false
+        var isGameOver = false
+        playerPointer += 1
+        
+        //if the player pointer is beyond the array, its a new round
+        if playerPointer >= playersArray.count {
+            isNewRound = true
             playerPointer = 0
+        }
+        
+        //do this loop until we find a player who hasn't lost already
+        //ie, get next player who's still active
+        while (playersArray[playerPointer].manager.didLose) {
+            playerPointer += 1
+            
+            //if the player pointer is beyond array, its a new round
+            if playerPointer >= playersArray.count {
+                //if its already been found as a new round, nobody is left
+                if isNewRound == true {
+                    isGameOver = true
+                    break
+                }
+                isNewRound = true
+                playerPointer = 0
+            }
+        }
+        
+        if isGameOver {
+            print("Game Over")
+            let winner = getWinner()
+            setInstruction(labelText: "WINNER IS: \(winner.name)")
+            gameTimer?.invalidate()
+        }
+        
+        
+        //last player, next actual round
+        else if isNewRound {
             manager = playersArray[playerPointer].manager
             speed -= 0.5
             gameTimer?.invalidate()
@@ -143,8 +173,9 @@ class GameViewController: UIViewController {
             } else {
                 // Fallback on earlier versions
             }
+            setPlayerLabel()
+            setScoreLabel()
         } else {
-            playerPointer += 1
             manager = playersArray[playerPointer].manager
             gameTimer?.invalidate()
             setInstruction(labelText: "Pass to \(playersArray[playerPointer].name)")
@@ -159,33 +190,33 @@ class GameViewController: UIViewController {
             } else {
                 // Fallback on earlier versions
             }
+            setPlayerLabel()
+            setScoreLabel()
         }
         
-        setPlayerLabel()
-        setScoreLabel()
+
     }
     
     func runGameCycle(){
         if hasStarted{
             manager?.nextTurn()
-            if hasLost{
-                print("you lose!!")
-                resetGame()
-                return
-            }
+            let score = manager!.getScore()
             
-            manager?.setNextTurn()
-            setScoreLabel()
-            setInstruction(labelText: (manager?.getInstructionString())!)
-            fadeInstructionOut(duration: speed)
-            
-            
-            let score = manager?.getScore()
-            if score! % roundLength == 0 && score! != 0 {
+            if hasLost {
+                print("\(playersArray[playerPointer].name) has lost!!")
+                numPlayers! -= 1
+                nextPlayer()
+            } else if score % roundLength == 0 && score != 0 {
                 
                 nextPlayer()
-            
+                
+            } else {
+                manager?.setNextTurn()
+                setScoreLabel()
+                setInstruction(labelText: (manager?.getInstructionString())!)
+                fadeInstructionOut(duration: speed)
             }
+            
         }
 
     }
@@ -225,6 +256,19 @@ class GameViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func getWinner() -> Player {
+        
+        var winner = playersArray[0]
+        var winningScore = playersArray[0].manager.getScore()
+        for player in playersArray {
+            if player.manager.getScore() > winningScore {
+                winningScore = player.manager.getScore()
+                winner = player
+            }
+        }
+        return winner
+        
+    }
 
     /*
     // MARK: - Navigation
