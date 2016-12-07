@@ -121,8 +121,8 @@ class GameViewController: UIViewController {
         
         manager?.nextRound()
 
-        var isNewRound = false
-        var isGameOver = false
+        var isNewRound = false //checks if the next player is starting a new round
+        var isGameOver = false //checks if all players have lost
         playerPointer += 1
         
         //if the player pointer is beyond the array, its a new round
@@ -153,32 +153,18 @@ class GameViewController: UIViewController {
             let winner = getWinner()
             setInstruction(labelText: "WINNER IS: \(winner.name)")
             gameTimer?.invalidate()
-        }
-        
-        
-        //last player, next actual round
-        else if isNewRound {
-            manager = playersArray[playerPointer].manager
-            speed -= 0.5
-            gameTimer?.invalidate()
-            setInstruction(labelText: "R O U N D  \(manager!.getRound())")
-            fadeInstructionOut(duration: roundDuration)
-            if #available(iOS 10.0, *) {
-                gameTimer = Timer.scheduledTimer(withTimeInterval: roundDuration, repeats: false, block: {_ in
-                    self.manager?.setNextTurn()
-                    self.setInstruction(labelText: (self.manager?.getInstructionString())!)
-                    self.fadeInstructionOut(duration: self.speed)
-                    self.newGameTimer()
-                })
-            } else {
-                // Fallback on earlier versions
-            }
-            setPlayerLabel()
-            setScoreLabel()
         } else {
+            var str = ""
+            if isNewRound {
+                speed -= 0.5
+                str = "R O U N D  \(manager!.getRound())"
+            } else {
+                str = "Pass to \(playersArray[playerPointer].name)"
+            }
+            
             manager = playersArray[playerPointer].manager
             gameTimer?.invalidate()
-            setInstruction(labelText: "Pass to \(playersArray[playerPointer].name)")
+            setInstruction(labelText: str)
             fadeInstructionOut(duration: roundDuration)
             if #available(iOS 10.0, *) {
                 gameTimer = Timer.scheduledTimer(withTimeInterval: roundDuration, repeats: false, block: {_ in
@@ -192,8 +178,8 @@ class GameViewController: UIViewController {
             }
             setPlayerLabel()
             setScoreLabel()
+   
         }
-        
 
     }
     
@@ -204,8 +190,18 @@ class GameViewController: UIViewController {
             
             if hasLost {
                 print("\(playersArray[playerPointer].name) has lost!!")
-                numPlayers! -= 1
-                nextPlayer()
+                gameTimer?.invalidate()
+                setInstruction(labelText: "\(playersArray[playerPointer].name) has lost!!")
+                fadeInstructionOut(duration: Double(roundLength))
+                if #available(iOS 10.0, *) {
+                    gameTimer = Timer.scheduledTimer(withTimeInterval: roundDuration, repeats: false, block: {_ in
+                        self.numPlayers! -= 1
+                        self.nextPlayer()
+                    })
+                } else {
+                    // Fallback on earlier versions
+                }
+ 
             } else if score % roundLength == 0 && score != 0 {
                 
                 nextPlayer()
