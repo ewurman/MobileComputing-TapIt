@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class MenuViewController: UIViewController {
 
@@ -26,8 +27,16 @@ class MenuViewController: UIViewController {
         if let gamevc = destinationvc as? GameViewController {
             if segue.identifier == "Single Player" {
                 gamevc.numPlayers = 1
+                gamevc.setGameMode(mode: 0)
+                
+            } else if segue.identifier == "Multiplayer"{
+                gamevc.numPlayers = 3 //TODO: Choose number of players
+                gamevc.setGameMode(mode: 1)
             } else {
-                gamevc.numPlayers = 3
+                gamevc.numPlayers = 1
+                //TODO: set speed
+                gamevc.setGameMode(mode: 2)
+
             }
             
             for i in 0 ..< gamevc.numPlayers! {
@@ -37,9 +46,8 @@ class MenuViewController: UIViewController {
             }
 
         }
-
-        
     }
+
 
 
 }

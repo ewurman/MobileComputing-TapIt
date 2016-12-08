@@ -32,6 +32,7 @@ class GameViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var highScoreLabel: UILabel!
     
     @IBOutlet weak var instructionLabel: UILabel!
     
@@ -43,6 +44,8 @@ class GameViewController: UIViewController {
     private var tapped = false
     private var rotated = false
     private var shook = false
+    private var gameMode = 1
+    private var highScoreManager = HighScoreManager()
     
     private var hasLost : Bool {
         get {
@@ -88,6 +91,10 @@ class GameViewController: UIViewController {
         if(event?.subtype == UIEventSubtype.motionShake) {
             manager?.shake()
         }
+    }
+    
+    func setGameMode(mode: Int){
+        gameMode = mode
     }
     
     
@@ -190,9 +197,18 @@ class GameViewController: UIViewController {
 
     }
     
+    func setHighScoreLabel(){
+        highScoreLabel.text = "HighScore: \(highScoreManager.readGameModesHighScore(gameMode: gameMode))"
+    }
+    
     func setScoreLabel() {
         scoreLabel.alpha = 1.0
-        if let m = manager { scoreLabel.text = String(m.getScore() ) }
+        if let m = manager {
+            let score = m.getScore()
+            scoreLabel.text = "Score: \(score)"
+            highScoreManager.updateHighScoreFor(gameMode: gameMode, highScore: score)
+            setHighScoreLabel()
+        }
     }
     
     func setInstruction(labelText: String){
@@ -206,7 +222,6 @@ class GameViewController: UIViewController {
     }
     
     func fadeInstructionOut(duration: Double){
-        //TODO: make the time interval a variable
         instructionLabel.fadeOut(fadeDuration: duration * 0.75, delayDuration: duration * 0.25)
     }
     
@@ -214,6 +229,7 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.becomeFirstResponder()
+        setHighScoreLabel()
     }
     
 
