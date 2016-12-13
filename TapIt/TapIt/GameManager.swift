@@ -50,7 +50,7 @@ class GameManager {
         //case Swipe_Left
         //case Swipe_Right
         case Shake
-        //case Rotate
+        case Rotate
     }
     
     //get numberOfActions
@@ -111,9 +111,9 @@ class GameManager {
             case .Shake:
                 if !checkExlusive(check: &didShake) { didLose = true }
             
-            /*case .Rotate:
+            case .Rotate:
                 if !checkExlusive(check: &didRotate) { didLose = true }
-               */
+               
             }
         }
         if !didLose { score += 1 }
@@ -147,7 +147,13 @@ class GameManager {
     private func resetData(){
         //TODO: add all new variables here
         didTap = false
+        didTapRed = false
+        didTapBlue = false
         didRotate = false
         didShake = false
+        didSwipeLeft = false
+        didSwipeRight = false
+        didSwipeUp = false
+        didSwipeDown = false
     }
 }

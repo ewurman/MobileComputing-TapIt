@@ -19,11 +19,7 @@ class GameView: UIView {
     }
     */
     
-    //jasons comment
 
-    //Erik's Comment 1  -Line 21
-    //Erik's Comment 2  -Line 22
-    
     
 }
 
@@ -34,4 +30,11 @@ extension UIView{
             self.alpha = 0
             }, completion: nil)
     }
+    
+    func fadeIn(fadeDuration: Double, delayDuration: Double){
+        UIView.animate(withDuration: fadeDuration, delay: delayDuration, options: UIViewAnimationOptions.curveLinear, animations: {
+            self.alpha = 1
+        }, completion: nil)
+    }
+    
 }

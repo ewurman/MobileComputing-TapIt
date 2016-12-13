@@ -40,11 +40,14 @@ class GameViewController: UIViewController {
     
     @IBOutlet weak var playerLabel: UILabel!
     
+    @IBOutlet weak var replayButton: UIButton!
+    
+    
     private var hasStarted = false
     private var tapped = false
     private var rotated = false
     private var shook = false
-    private var gameMode = 1
+    private var gameMode = 0
     private var highScoreManager = HighScoreManager()
     
     private var hasLost : Bool {
@@ -53,22 +56,62 @@ class GameViewController: UIViewController {
         }
     }
     
-    private var speed = 2.0
+    private var speed = 2.0 //TODO:  Should be 3?
     private let roundDuration = 2.0
-    private let roundLength = 3
+    private let roundLength = 3 //Maybe 3-5 range?
     
     var gameTimer: Timer?
     
     var numPlayers: Int?
+    private var numPlayersDeleted = 0
     var playersArray = [Player]() {
         didSet {
-            manager = playersArray[playerPointer].manager
+            if !playersArray.isEmpty {
+                manager = playersArray[playerPointer].manager //this line is giving error on replay
+            }
         }
     }
     var playerPointer = 0
     
     var manager: GameManager?
 
+    func initPlayerArray(){
+        print("Initializing player array with numPlayers = " + String(numPlayers!))
+        for i in 0 ..< numPlayers! {
+            let p = Player()
+            p.name = "Player \(i + 1)"
+            playersArray.append(p)
+        }
+    }
+    
+    private func resetPlayerArray(){
+        playersArray.removeAll()
+        if numPlayers != nil{
+            numPlayers = numPlayers! + numPlayersDeleted
+        } else{
+            numPlayers = numPlayersDeleted
+        }
+        playerPointer = 0
+        numPlayersDeleted = 0
+        initPlayerArray()
+    }
+    
+    private func debugPlayerArray(){
+        for player in playersArray{
+            print(player.name)
+        }
+    }
+    
+    private func resetGame(){
+        resetPlayerArray()
+        hasStarted = false
+    }
+    
+    @IBAction func replayGame(_ sender: UIButton) {
+        resetGame()
+        setInstruction(labelText: "Tap to Begin")
+    }
+    
     @IBAction func tap(_ sender: UITapGestureRecognizer) {
         if !hasStarted{
             beginGame()
@@ -93,12 +136,27 @@ class GameViewController: UIViewController {
         }
     }
     
+    func disableReplayButton(){
+        replayButton.isEnabled = false
+        replayButton.alpha = 0.5
+    }
+    
+    func enableReplayButton(){
+        replayButton.isEnabled = true
+        replayButton.alpha = 1.0
+    }
+    
+    
     func setGameMode(mode: Int){
         gameMode = mode
+        if (mode == 2) {
+            speed = speed / 2
+        }
     }
     
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
         manager?.rotate()
         /*
         if UIDevice.current.orientation.isLandscape {
@@ -109,6 +167,7 @@ class GameViewController: UIViewController {
          */
     }
     
+    
  
     func beginGame(){
         manager?.setNextTurn()
@@ -116,7 +175,7 @@ class GameViewController: UIViewController {
         fadeInstructionOut(duration: speed)
         hasStarted = true
         newGameTimer()
-
+        disableReplayButton()
     }
     
     func newGameTimer() {
@@ -158,12 +217,17 @@ class GameViewController: UIViewController {
         if isGameOver {
             print("Game Over")
             let winner = getWinner()
-            setInstruction(labelText: "WINNER IS: \(winner.name)")
+            if (numPlayers != 1){
+                setInstruction(labelText: "WINNER IS: \(winner.name)")
+            }
             gameTimer?.invalidate()
+            enableReplayButton()
         } else {
             var str = ""
             if isNewRound {
-                speed -= 0.5
+                speed *= 0.8
+                //speed -= 0.5
+                //TODO: percentage increases rather than linear
                 str = "R O U N D  \(manager!.getRound())"
             } else {
                 str = "Pass to \(playersArray[playerPointer].name)"
@@ -203,6 +267,7 @@ class GameViewController: UIViewController {
                 if #available(iOS 10.0, *) {
                     gameTimer = Timer.scheduledTimer(withTimeInterval: roundDuration, repeats: false, block: {_ in
                         self.numPlayers! -= 1
+                        self.numPlayersDeleted += 1
                         self.nextPlayer()
                     })
                 } else {
@@ -268,7 +333,7 @@ class GameViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func getWinner() -> Player {
+    private func getWinner() -> Player {
         
         var winner = playersArray[0]
         var winningScore = playersArray[0].manager.getScore()
