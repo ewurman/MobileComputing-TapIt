@@ -56,7 +56,7 @@ class GameViewController: UIViewController {
         }
     }
     
-    private var speed = 2.0 //TODO:  Should be 3?
+    private var speed = 3.0 //TODO:  Should be 3? test at 2
     private let roundDuration = 2.0
     private let roundLength = 3 //Maybe 3-5 range?
     
@@ -76,7 +76,7 @@ class GameViewController: UIViewController {
     var manager: GameManager?
 
     func initPlayerArray(){
-        print("Initializing player array with numPlayers = " + String(numPlayers!))
+        //print("Initializing player array with numPlayers = " + String(numPlayers!))
         for i in 0 ..< numPlayers! {
             let p = Player()
             p.name = "Player \(i + 1)"
@@ -105,6 +105,7 @@ class GameViewController: UIViewController {
     private func resetGame(){
         resetPlayerArray()
         hasStarted = false
+        speed = 3.0 //TODO: 2 for testing
     }
     
     @IBAction func replayGame(_ sender: UIButton) {
@@ -225,9 +226,8 @@ class GameViewController: UIViewController {
         } else {
             var str = ""
             if isNewRound {
-                speed *= 0.8
+                speed *= 0.85
                 //speed -= 0.5
-                //TODO: percentage increases rather than linear
                 str = "R O U N D  \(manager!.getRound())"
             } else {
                 str = "Pass to \(playersArray[playerPointer].name)"
@@ -275,8 +275,17 @@ class GameViewController: UIViewController {
                 }
  
             } else if score % roundLength == 0 && score != 0 {
-                
-                nextPlayer()
+                if gameMode == 2{ //frenzy doesn't break each round
+                    speed *= 0.85 //TODO: use this in actual game, other for quicker testing
+                    //speed -= 0.5
+                    manager?.nextRound()
+                    manager?.setNextTurn()
+                    setScoreLabel()
+                    setInstruction(labelText: (manager?.getInstructionString())!)
+                    fadeInstructionOut(duration: speed)
+                } else{
+                    nextPlayer()
+                }
                 
             } else {
                 manager?.setNextTurn()
@@ -322,8 +331,19 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         self.becomeFirstResponder()
         setHighScoreLabel()
+        setNavTitle()
     }
     
+    private func setNavTitle(){
+        switch gameMode {
+        case 0:
+            navigationItem.title = "Single Player Mode"
+        case 1:
+            navigationItem.title = "\(numPlayers!) Player Mode"
+        default:
+            navigationItem.title = "Frenzy Mode"
+        }
+    }
 
     
  

@@ -28,12 +28,11 @@ class MenuViewController: UIViewController {
             if segue.identifier == "Single Player" {
                 gamevc.numPlayers = 1
                 gamevc.setGameMode(mode: 0)
-            } else if segue.identifier == "Multiplayer"{
-                gamevc.numPlayers = 3 //TODO: Choose number of players
+            } else if segue.identifier == "Multiplayer"{ //TODO: leftover code. never occurs
+                gamevc.numPlayers = 3
                 gamevc.setGameMode(mode: 1)
             } else {
                 gamevc.numPlayers = 1
-                //TODO: set speed
                 gamevc.setGameMode(mode: 2) 
 
             }
