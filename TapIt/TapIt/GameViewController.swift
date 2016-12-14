@@ -56,6 +56,7 @@ class GameViewController: UIViewController {
         }
     }
     
+    private let maxSpeed = 1.0
     private var speed = 3.0 //TODO:  Should be 3? test at 2
     private let roundDuration = 2.0
     private let roundLength = 3 //Maybe 3-5 range?
@@ -110,7 +111,7 @@ class GameViewController: UIViewController {
     
     @IBAction func replayGame(_ sender: UIButton) {
         resetGame()
-        setInstruction(labelText: "Tap to Begin")
+        setInstruction(labelText: "Tap Anywhere to Begin")
     }
     
     @IBAction func tap(_ sender: UITapGestureRecognizer) {
@@ -226,7 +227,7 @@ class GameViewController: UIViewController {
         } else {
             var str = ""
             if isNewRound {
-                speed *= 0.85
+                speed = max(0.85 * speed, maxSpeed)
                 //speed -= 0.5
                 str = "R O U N D  \(manager!.getRound())"
             } else {
@@ -276,7 +277,7 @@ class GameViewController: UIViewController {
  
             } else if score % roundLength == 0 && score != 0 {
                 if gameMode == 2{ //frenzy doesn't break each round
-                    speed *= 0.85 //TODO: use this in actual game, other for quicker testing
+                    speed = max(speed * 0.85, maxSpeed) //TODO: use this in actual game, other for quicker testing
                     //speed -= 0.5
                     manager?.nextRound()
                     manager?.setNextTurn()
@@ -326,7 +327,6 @@ class GameViewController: UIViewController {
         instructionLabel.fadeOut(fadeDuration: duration * 0.75, delayDuration: duration * 0.25)
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.becomeFirstResponder()
@@ -344,9 +344,7 @@ class GameViewController: UIViewController {
             navigationItem.title = "Frenzy Mode"
         }
     }
-
     
- 
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -354,7 +352,6 @@ class GameViewController: UIViewController {
     }
     
     private func getWinner() -> Player {
-        
         var winner = playersArray[0]
         var winningScore = playersArray[0].manager.getScore()
         for player in playersArray {
