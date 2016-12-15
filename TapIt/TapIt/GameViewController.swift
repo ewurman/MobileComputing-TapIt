@@ -266,6 +266,7 @@ class GameViewController: UIViewController {
         self.becomeFirstResponder()
         setHighScoreLabel()
         setNavTitle()
+        setPlayerLabel()
     }
     
     private func setNavTitle(){

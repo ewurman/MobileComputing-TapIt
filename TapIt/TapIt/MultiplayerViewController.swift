@@ -10,11 +10,13 @@ import UIKit
 
 class MultiplayerViewController: UIViewController {
 
-    private var numPlayers = 3
+    var numPlayers = 3
     private let minPlayers = 2
     private let maxPlayers = 10
     private let fadeOutTime = 0.25
     private let fadeInTime = 0.1
+    
+    var playerNames: [String]?
     
     @IBOutlet weak var numPlayersLabel: UILabel!
     
@@ -23,6 +25,7 @@ class MultiplayerViewController: UIViewController {
     @IBOutlet weak var removeButton: UIButton!
     
     @IBAction func addPlayer(_ sender: UIButton) {
+        playerNames = nil
         activateButton(button: removeButton)
         if numPlayers < maxPlayers{
             numPlayers += 1
@@ -34,6 +37,7 @@ class MultiplayerViewController: UIViewController {
     }
     
     @IBAction func removePlayer(_ sender: UIButton) {
+        playerNames = nil
         activateButton(button: addButton)
         if numPlayers > minPlayers{
             numPlayers -= 1
@@ -64,6 +68,8 @@ class MultiplayerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if playerNames != nil {numPlayers = playerNames!.count}
+        updateLabel()
 
         // Do any additional setup after loading the view.
     }
@@ -85,6 +91,7 @@ class MultiplayerViewController: UIViewController {
             //gamevc.numPlayers = numPlayers
             gamevc.setGameMode(mode: 1)
             gamevc.playerManager.setNumPlayers(number: numPlayers)
+            if (playerNames != nil) {gamevc.playerManager.playerNames = playerNames}
             gamevc.playerManager.initializePlayersArray()
             
             
@@ -93,6 +100,8 @@ class MultiplayerViewController: UIViewController {
 //                p.name = "Player \(i + 1)"
 //                gamevc.playersArray.append(p)
 //            }
+        } else if let modalvc = destinationvc as? NamingViewController {
+            modalvc.numPlayers = numPlayers
         }
     }
     
