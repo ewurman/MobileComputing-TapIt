@@ -75,7 +75,7 @@ class TutorialViewController: UIViewController {
     
     private func begin(at: Int){
         manager.currentGameActionNum = at
-        manager.setNextTurn()//start at tapBlue
+        manager.setNextTurn()   //start at tapBlue
         setInstruction(labelText: (manager.getInstructionString()))
         fadeInstructionOut(duration: speed)
         hasBegun = true
@@ -86,24 +86,24 @@ class TutorialViewController: UIViewController {
         if hasBegun{
             manager.nextTurn()
             if hasLost{
+                //Tell them they got it wrong then retry the same command
+                
                 gameTimer?.invalidate()
                 setInstruction(labelText: "Try again.")
                 fadeInstructionOut(duration: speed / 2)
                 if #available(iOS 10.0, *) {
                     gameTimer = Timer.scheduledTimer(withTimeInterval: speed / 2, repeats: false, block: {_ in
                         self.manager.didLose = false
-                        self.begin(at: self.manager.currentGameActionNum! - 1)
+                        self.begin(at: self.manager.currentGameActionNum! - 1) //go back to this action
                     })
                 } else {
-                    // Fallback on earlier versions
+                    // Fallback on earlier versions. We don't support earlier versions
                 }
             }else {
                 manager.setNextTurn()
                 if hasWon{
                     gameTimer?.invalidate()
-                    speed = 1.5
                     setInstruction(labelText: "You have completed the tutorial!")
-                    speed = 3.0
                     hasBegun = false
                 }
                 else{
@@ -133,18 +133,6 @@ class TutorialViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -8,10 +8,11 @@
 
 import Foundation
 
-class TutorialManager: GameManager{
+class TutorialManager: GameManager{ //inherit from Game Manager
     var didWin = false
     
     override func setNextTurn() {
+        //goes in order for the gestures
         resetData()
         currentGameActionNum = currentGameActionNum! + 1
         if currentGameActionNum! > GameManager.numberOfActions{

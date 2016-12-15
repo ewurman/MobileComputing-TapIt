@@ -17,7 +17,7 @@ class GameManager {
     func getRound() -> Int { return round }
     func nextRound() { round += 1 }
     
-    //bool checks
+    //bool checks, representing what action was done by user
     private var didTap = false
     private var didTapRed = false
     private var didTapBlue = false
@@ -29,7 +29,7 @@ class GameManager {
     private var didSwipeDown = false
 
     
-    //change bool checks from controller
+    //functions to change bool checks from controller
     func tappedRed() { didTapRed = true }
     func tappedBlue() { didTapBlue = true }
     @objc func swipeLeft() { didSwipeLeft = true }
@@ -82,8 +82,8 @@ class GameManager {
 
     func setNextTurn() {
         resetData()
-        currentGameActionNum = Int(arc4random_uniform(UInt32(GameManager.numberOfActions))) + 1
         //get random number from 1 to the number of possible actions exclusive
+        currentGameActionNum = Int(arc4random_uniform(UInt32(GameManager.numberOfActions))) + 1
     }
     
     func nextTurn() {
@@ -119,7 +119,9 @@ class GameManager {
         if !didLose { score += 1 }
     }
     
-    
+    //we want to check if the given check is true, and only that check is true
+    //make the given check false, and check that all the checks are false
+    //passed as pointer, so check is sent back to false after the function exits
     private func checkExlusive(check: inout Bool) -> Bool {
         if (!check) {
             return false

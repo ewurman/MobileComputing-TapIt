@@ -12,7 +12,7 @@ class GameViewController: UIViewController {
 
     @IBOutlet weak var gameView: UIView! {
         didSet {
-
+            //Add the swipe gesture recognizers to the playerManager
             let swipeUpRecognizer = UISwipeGestureRecognizer(target: playerManager, action: #selector(playerManager.swipeUp))
             swipeUpRecognizer.direction = .up
             gameView.addGestureRecognizer(swipeUpRecognizer)
@@ -57,24 +57,30 @@ class GameViewController: UIViewController {
     }
     
     private let maxSpeed = 1.0
-    private var speed = 3.0 //TODO:  Should be 3? test at 2
+    private var speed = 3.0
     private let roundDuration = 2.0
-    private let roundLength = 3 //Maybe 3-5 range?
+    private let roundLength = 3 //Maybe 4-6 range for actual game? 3 for Demo Purposes
     
     var gameTimer: Timer?
 
     let playerManager = PlayerManager()
     
+    //called for replay
     private func resetPlayerArray(){
         playerManager.resetPlayerArray()
         setScoreLabel()
         setPlayerLabel()
     }
     
+    //used when user wants to replay a game
     private func resetGame(){
         resetPlayerArray()
         hasStarted = false
-        speed = 3.0 //TODO: 2 for testing
+        if gameMode == 2{
+            speed = 1.5
+        }else{
+            speed = 3.0
+        }
     }
     
     @IBAction func replayGame(_ sender: UIButton) {
@@ -119,19 +125,18 @@ class GameViewController: UIViewController {
     
     func setGameMode(mode: Int){
         gameMode = mode
-        if (mode == 2) {
+        if (mode == 2) { //Frenzy is faster
             speed = speed / 2
         }
     }
     
-    
+    //function for rotate handling as a move in the game
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         playerManager.manager?.rotate()
     }
     
     
- 
     func beginGame(){
         playerManager.manager?.setNextTurn()
         setInstruction(labelText: (playerManager.manager?.getInstructionString())!)
@@ -146,8 +151,9 @@ class GameViewController: UIViewController {
     }
     
 
+    //gets from the player Manager whether it is the next round or the game is over.
+    //Gets called when a round is over or someone loses
     func nextPlayer() {
-
         var isNewRound = false //checks if the next player is starting a new round
         var isGameOver = false //checks if all players have lost
         (isNewRound, isGameOver) = playerManager.nextPlayer()
@@ -163,8 +169,7 @@ class GameViewController: UIViewController {
         } else {
             var str = ""
             if isNewRound {
-                speed = max(0.85 * speed, maxSpeed)
-                //speed -= 0.5
+                speed = max(0.85 * speed, maxSpeed) //doesn't get faster than speed maxSpeed, which should be 1
                 str = "R O U N D  \(playerManager.manager!.getRound())"
             } else {
                 str = "Pass to \(playerManager.getPlayerName())"
@@ -174,6 +179,7 @@ class GameViewController: UIViewController {
             setInstruction(labelText: str)
             fadeInstructionOut(duration: roundDuration)
             if #available(iOS 10.0, *) {
+                //wait for fade then begin new round again
                 gameTimer = Timer.scheduledTimer(withTimeInterval: roundDuration, repeats: false, block: {_ in
                     self.playerManager.manager?.setNextTurn()
                     self.setInstruction(labelText: self.playerManager.manager!.getInstructionString())
@@ -181,7 +187,7 @@ class GameViewController: UIViewController {
                     self.newGameTimer()
                 })
             } else {
-                // Fallback on earlier versions
+                // Fallback on earlier versions. We do not support earlier versions
             }
             setPlayerLabel()
             setScoreLabel()
@@ -190,6 +196,8 @@ class GameViewController: UIViewController {
 
     }
     
+    // this is the action function that our timer 
+    // it uses that deals with the user response to a prompt and gets the next round
     func runGameCycle(){
         if hasStarted{
             playerManager.manager?.nextTurn()
@@ -202,17 +210,16 @@ class GameViewController: UIViewController {
                 fadeInstructionOut(duration: Double(roundLength))
                 if #available(iOS 10.0, *) {
                     gameTimer = Timer.scheduledTimer(withTimeInterval: roundDuration, repeats: false, block: {_ in
-                        //self.numPlayers! -= 1
                         self.nextPlayer()
                     })
                 } else {
-                    // Fallback on earlier versions
+                    // Fallback on earlier versions. Not supported in our app
                 }
  
-            } else if score % roundLength == 0 && score != 0 {
-                if gameMode == 2{ //frenzy doesn't break each round
-                    speed = max(speed * 0.85, maxSpeed) //TODO: use this in actual game, other for quicker testing
-                    //speed -= 0.5
+            } else if score % roundLength == 0 && score != 0 { //if end of round
+                
+                if gameMode == 2{ //frenzy doesn't have a break for each round
+                    speed = max(speed * 0.85, maxSpeed) //never pass speed maxSpeed, should be 1
                     playerManager.manager?.nextRound()
                     playerManager.manager?.setNextTurn()
                     setScoreLabel()
@@ -222,7 +229,7 @@ class GameViewController: UIViewController {
                     nextPlayer()
                 }
                 
-            } else {
+            } else { //not a next round, player gets next instruction
                 playerManager.manager?.setNextTurn()
                 setScoreLabel()
                 setInstruction(labelText: (playerManager.manager?.getInstructionString())!)
@@ -243,10 +250,12 @@ class GameViewController: UIViewController {
             let score = m.getScore()
             scoreLabel.text = "Score: \(score)"
             highScoreManager.updateHighScoreFor(gameMode: gameMode, highScore: score)
+            //updates high score if you pass it
             setHighScoreLabel()
         }
     }
     
+    //messes with colors if at a high round tap red might be in blue
     func setInstruction(labelText: String){
         var color = UIColor.white
         if let round = playerManager.manager?.getRound() {
@@ -264,7 +273,6 @@ class GameViewController: UIViewController {
     }
     
     func redOrBlue() -> UIColor {
-        //let colors = [UIColor.red, UIColor.blue]
         let colors = [UIColor.red, UIColor(red: 0/255, green: 177/255, blue: 247/255, alpha: 1.0)]
         return colors[Int(arc4random_uniform(UInt32(colors.count)))]
     }
@@ -308,14 +316,5 @@ class GameViewController: UIViewController {
         return playerManager.getWinner()
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -88,18 +88,14 @@ class MultiplayerViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationvc = segue.destination
         if let gamevc = destinationvc as? GameViewController {
-            //gamevc.numPlayers = numPlayers
-            gamevc.setGameMode(mode: 1)
+            
+            gamevc.setGameMode(mode: 1) //Multiplayer mode
             gamevc.playerManager.setNumPlayers(number: numPlayers)
-            if (playerNames != nil) {gamevc.playerManager.playerNames = playerNames}
+            if (playerNames != nil) {
+                gamevc.playerManager.playerNames = playerNames
+            }
             gamevc.playerManager.initializePlayersArray()
-            
-            
-//            for i in 0 ..< gamevc.numPlayers! {
-//                let p = Player()
-//                p.name = "Player \(i + 1)"
-//                gamevc.playersArray.append(p)
-//            }
+
         } else if let modalvc = destinationvc as? NamingViewController {
             modalvc.numPlayers = numPlayers
         }

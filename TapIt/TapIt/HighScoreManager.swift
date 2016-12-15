@@ -35,6 +35,7 @@ class HighScoreManager{
     }
     
     private func writeHighScoresToFile(highScoresArr: [String]){
+        //writes high scores of each game mode 
         var text = highScoresArr[0]
         for i in 1..<(highScoresArr.count) {
             text += ",\(highScoresArr[i])"

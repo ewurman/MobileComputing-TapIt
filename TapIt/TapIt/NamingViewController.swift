@@ -14,15 +14,15 @@ class NamingViewController: UIViewController, UITextFieldDelegate {
     
     var textFields = [UITextField]()
     
-    
     override func viewDidLoad() {
         
+        //programatically make the text fields to put the player name entries
         let navBarHeight = self.navigationController?.navigationBar.frame.height
         let viewHeight = self.view.bounds.size.height - navBarHeight!
         let bufferPixels = CGFloat(viewHeight / CGFloat(numPlayers! + 1))
         
         var yVal = 2 * CGFloat(navBarHeight!)
-        //let yIncrement = bufferPixels + (self.view.bounds.size.height / CGFloat(numPlayers!))
+        
         super.viewDidLoad()
         for i in 1...numPlayers! {
             let width = self.view.bounds.size.width / 3
@@ -30,12 +30,7 @@ class NamingViewController: UIViewController, UITextFieldDelegate {
             sampleTextField.textColor = UIColor.white
             sampleTextField.backgroundColor = UIColor.gray
             sampleTextField.attributedPlaceholder = NSAttributedString(string: "Player \(i)", attributes: [NSForegroundColorAttributeName : UIColor.white])
-            //sampleTextField.font = UIFont.systemFontOfSize(15)
-            //sampleTextField.borderStyle = UITextBorderStyle.RoundedRect
-            //sampleTextField.autocorrectionType = UITextAutocorrectionType.No
-            //sampleTextField.keyboardType = UIKeyboardType.Default
             sampleTextField.returnKeyType = UIReturnKeyType.done
-            //sampleTextField.clearButtonMode = UITextFieldViewMode.WhileEditing;
             sampleTextField.contentVerticalAlignment = UIControlContentVerticalAlignment.center
             sampleTextField.delegate = self
             self.view.addSubview(sampleTextField)
@@ -46,13 +41,9 @@ class NamingViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    override var shouldAutorotate: Bool {
-        return false
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     private func getPlayerNames() -> [String]{

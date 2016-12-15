@@ -13,12 +13,10 @@ class MenuViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -28,7 +26,7 @@ class MenuViewController: UIViewController {
             if segue.identifier == "Single Player" {
                 gamevc.playerManager.numPlayers = 1
                 gamevc.setGameMode(mode: 0)
-            } else {
+            } else { //Frenzy Mode
                 gamevc.playerManager.numPlayers = 1
                 gamevc.setGameMode(mode: 2)
             }

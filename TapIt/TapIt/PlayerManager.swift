@@ -17,14 +17,15 @@ class PlayerManager {
     var playerPointer = 0
     var manager: GameManager?
     
+    //either initializes as player i or as the name that is entered into playerNames
     func initializePlayersArray() {
         for i in 0 ..< numPlayers {
             let p = Player()
             p.name = (playerNames == nil) ? "Player \(i + 1)" : playerNames![i]
-            //p.name = "Player \(i + 1)"
             playersArray.append(p)
         }
         manager = playersArray[0].manager
+        //set current Game manager to this player's manager
     }
     
     func setNumPlayers(number: Int){
@@ -34,7 +35,6 @@ class PlayerManager {
     func resetPlayerArray(){
         for player in playersArray{
             player.manager = GameManager()
-            numPlayers = numPlayers + 1
         }
         playerPointer = 0
         manager = playersArray[playerPointer].manager
@@ -72,9 +72,9 @@ class PlayerManager {
         if !isGameOver{
             manager = playersArray[playerPointer].manager
         }
-        
         return (isNewRound, isGameOver)
     }
+    
     
     func getPlayerName() -> String{
         return playersArray[playerPointer].name
@@ -85,9 +85,9 @@ class PlayerManager {
         var winningScore = playersArray[0].manager.getScore()
         for player in playersArray {
             if player.manager.getScore() > winningScore {
-            winningScore = player.manager.getScore()
-            winner = player
-        }
+                winningScore = player.manager.getScore()
+                winner = player
+            }
         }
         return winner
     }
