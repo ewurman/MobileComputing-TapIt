@@ -144,7 +144,7 @@ class GameManager {
         )
     }
     
-    private func resetData(){
+    func resetData(){
         //TODO: keep adding all new variables here
         didTap = false
         didTapRed = false

@@ -64,25 +64,6 @@ class GameViewController: UIViewController {
     var gameTimer: Timer?
 
     let playerManager = PlayerManager()
-
-    /*var numPlayers: Int?
-    var playersArray = [Player]() {
-        didSet {
-            if !playersArray.isEmpty {
-                manager = playersArray[playerPointer].manager //this line is giving error on replay
-            }
-        }
-    }
-    
-    func initPlayerArray(){
-        //print("Initializing player array with numPlayers = " + String(numPlayers!))
-        for i in 0 ..< numPlayers! {
-            let p = Player()
-            p.name = "Player \(i + 1)"
-            playersArray.append(p)
-        }
-    }
- */
     
     private func resetPlayerArray(){
         playerManager.resetPlayerArray()
@@ -147,13 +128,6 @@ class GameViewController: UIViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         playerManager.manager?.rotate()
-        /*
-        if UIDevice.current.orientation.isLandscape {
-            print("Landscape")
-        } else {
-            print("Portrait")
-        }
-         */
     }
     
     

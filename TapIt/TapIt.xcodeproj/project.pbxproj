@@ -20,6 +20,8 @@
 		9D4669071DD11B09000E23AA /* TapItTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4669061DD11B09000E23AA /* TapItTests.swift */; };
 		9D4669121DD11B09000E23AA /* TapItUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4669111DD11B09000E23AA /* TapItUITests.swift */; };
 		9D70AC1B1E021470001CF0B1 /* PlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D70AC1A1E021470001CF0B1 /* PlayerManager.swift */; };
+		9D70AC1D1E022973001CF0B1 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D70AC1C1E022973001CF0B1 /* TutorialViewController.swift */; };
+		9D70AC1F1E022B13001CF0B1 /* TutorialManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D70AC1E1E022B13001CF0B1 /* TutorialManager.swift */; };
 		9DA20BFE1DFF42EA00702AAC /* MultiplayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA20BFD1DFF42EA00702AAC /* MultiplayerViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +62,8 @@
 		9D4669111DD11B09000E23AA /* TapItUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapItUITests.swift; sourceTree = "<group>"; };
 		9D4669131DD11B09000E23AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9D70AC1A1E021470001CF0B1 /* PlayerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerManager.swift; sourceTree = "<group>"; };
+		9D70AC1C1E022973001CF0B1 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
+		9D70AC1E1E022B13001CF0B1 /* TutorialManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialManager.swift; sourceTree = "<group>"; };
 		9DA20BFD1DFF42EA00702AAC /* MultiplayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,13 +118,15 @@
 				9D4668F11DD11B09000E23AA /* AppDelegate.swift */,
 				9D4668F31DD11B09000E23AA /* ViewController.swift */,
 				9D4668F51DD11B09000E23AA /* Main.storyboard */,
-				9DA20BFD1DFF42EA00702AAC /* MultiplayerViewController.swift */,
-				9D066C331DF48B8B00C884A5 /* GameView.swift */,
+				9D70AC1C1E022973001CF0B1 /* TutorialViewController.swift */,
+				9D70AC1E1E022B13001CF0B1 /* TutorialManager.swift */,
+				9D066C311DEF3B7F00C884A5 /* GameManager.swift */,
 				9D066C2F1DEF2C6200C884A5 /* GameViewController.swift */,
+				9D066C331DF48B8B00C884A5 /* GameView.swift */,
 				9D70AC1A1E021470001CF0B1 /* PlayerManager.swift */,
+				9DA20BFD1DFF42EA00702AAC /* MultiplayerViewController.swift */,
 				9D066C351DF87FCB00C884A5 /* HighScoreManager.swift */,
 				56CEA2AA1DF5FA9A00DA44DA /* Player.swift */,
-				9D066C311DEF3B7F00C884A5 /* GameManager.swift */,
 				9D4668F81DD11B09000E23AA /* Assets.xcassets */,
 				9D4668FA1DD11B09000E23AA /* LaunchScreen.storyboard */,
 				9D4668FD1DD11B09000E23AA /* Info.plist */,
@@ -282,7 +288,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D066C301DEF2C6200C884A5 /* GameViewController.swift in Sources */,
+				9D70AC1F1E022B13001CF0B1 /* TutorialManager.swift in Sources */,
 				9DA20BFE1DFF42EA00702AAC /* MultiplayerViewController.swift in Sources */,
+				9D70AC1D1E022973001CF0B1 /* TutorialViewController.swift in Sources */,
 				9D4668F41DD11B09000E23AA /* ViewController.swift in Sources */,
 				9D4668F21DD11B09000E23AA /* AppDelegate.swift in Sources */,
 				9D066C361DF87FCB00C884A5 /* HighScoreManager.swift in Sources */,
