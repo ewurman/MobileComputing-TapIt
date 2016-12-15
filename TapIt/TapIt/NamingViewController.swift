@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NamingViewController: UIViewController {
+class NamingViewController: UIViewController, UITextFieldDelegate {
     
     var numPlayers: Int?
     
@@ -34,10 +34,10 @@ class NamingViewController: UIViewController {
             //sampleTextField.borderStyle = UITextBorderStyle.RoundedRect
             //sampleTextField.autocorrectionType = UITextAutocorrectionType.No
             //sampleTextField.keyboardType = UIKeyboardType.Default
-            //sampleTextField.returnKeyType = UIReturnKeyType.Done
+            sampleTextField.returnKeyType = UIReturnKeyType.done
             //sampleTextField.clearButtonMode = UITextFieldViewMode.WhileEditing;
             sampleTextField.contentVerticalAlignment = UIControlContentVerticalAlignment.center
-            //sampleTextField.delegate = self
+            sampleTextField.delegate = self
             self.view.addSubview(sampleTextField)
             
             yVal += bufferPixels
@@ -61,6 +61,11 @@ class NamingViewController: UIViewController {
             playerNames.append(field.text!)
         }
         return playerNames
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
     
