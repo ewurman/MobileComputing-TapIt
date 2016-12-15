@@ -254,7 +254,7 @@ class GameViewController: UIViewController {
                 color = round < 2 ? UIColor.red : redOrBlue()
             }
             if labelText == "Tap blue" {
-                color = round < 2 ? UIColor.blue : redOrBlue()
+                color = round < 2 ? UIColor(red: 0/255, green: 177/255, blue: 247/255, alpha: 1.0) : redOrBlue()
             }
         }
         
@@ -264,7 +264,8 @@ class GameViewController: UIViewController {
     }
     
     func redOrBlue() -> UIColor {
-        let colors = [UIColor.red, UIColor.blue]
+        //let colors = [UIColor.red, UIColor.blue]
+        let colors = [UIColor.red, UIColor(red: 0/255, green: 177/255, blue: 247/255, alpha: 1.0)]
         return colors[Int(arc4random_uniform(UInt32(colors.count)))]
     }
     
