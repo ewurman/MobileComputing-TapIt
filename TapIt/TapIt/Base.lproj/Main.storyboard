@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tap It-->
+        <!--Menu View Controller-->
         <scene sceneID="2Rx-pT-Y5g">
             <objects>
                 <viewController id="5oz-nw-NO9" customClass="MenuViewController" customModule="TapIt" customModuleProvider="target" sceneMemberID="viewController">
@@ -33,7 +33,7 @@
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ijp-Cb-do2">
                                                 <rect key="frame" x="126.33333333333333" y="0.0" width="121.33333333333336" height="70"/>
-                                                <color key="backgroundColor" red="0.28385131250000001" green="0.53958042350000002" blue="0.70498609290000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.28235294117647058" green="0.54117647058823526" blue="0.70588235294117641" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="Single Player">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -153,7 +153,7 @@
                             <constraint firstItem="het-Ox-E15" firstAttribute="leading" secondItem="a6E-W8-Pji" secondAttribute="leadingMargin" id="xyP-sb-hjU"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Tap It" id="TgK-xz-2LA"/>
+                    <navigationItem key="navigationItem" id="TgK-xz-2LA"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lqQ-Aj-y8Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -481,9 +481,14 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MTD-BY-7AZ" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Pr4-P3-EFd">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Pr4-P3-EFd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.2163980694" green="0.2163980694" blue="0.2163980694" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -496,6 +501,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="g0w-9p-LNW"/>
+        <segue reference="T4m-CJ-ZQ7"/>
     </inferredMetricsTieBreakers>
 </document>

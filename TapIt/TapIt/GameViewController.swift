@@ -295,6 +295,7 @@ class GameViewController: UIViewController {
     }
     
     private func setNavTitle(){
+        //navigationItem.titleView.colo
         switch gameMode {
         case 0:
             navigationItem.title = "Single Player Mode"
