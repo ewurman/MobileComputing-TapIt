@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="MTD-BY-7AZ">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="MTD-BY-7AZ">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -33,8 +33,10 @@
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ijp-Cb-do2">
                                                 <rect key="frame" x="126.33333333333333" y="0.0" width="121.33333333333336" height="70"/>
-                                                <color key="backgroundColor" red="0.86409931279999996" green="0.86409931279999996" blue="0.86409931279999996" alpha="1" colorSpace="calibratedRGB"/>
-                                                <state key="normal" title="Single Player"/>
+                                                <color key="backgroundColor" red="0.28385131250000001" green="0.53958042350000002" blue="0.70498609290000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="Single Player">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
                                                 <connections>
                                                     <segue destination="83t-Qc-DmX" kind="show" identifier="Single Player" id="ERg-pX-Srj"/>
                                                 </connections>
@@ -52,7 +54,7 @@
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hc7-uy-FWP">
                                                 <rect key="frame" x="126.33333333333333" y="0.0" width="121.33333333333336" height="70"/>
-                                                <color key="backgroundColor" red="0.86409931279999996" green="0.86409931279999996" blue="0.86409931279999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.28385131250000001" green="0.53958042350000002" blue="0.70498609290000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="Multiplayer"/>
                                                 <connections>
                                                     <segue destination="rWt-mG-nab" kind="show" id="mMl-xS-in1"/>
@@ -71,7 +73,7 @@
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fcE-mn-evj">
                                                 <rect key="frame" x="126.33333333333333" y="0.0" width="121.33333333333336" height="70"/>
-                                                <color key="backgroundColor" red="0.86409931279999996" green="0.86409931279999996" blue="0.86409931279999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.28385131250000001" green="0.53958042350000002" blue="0.70498609290000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="Frenzy"/>
                                                 <connections>
                                                     <segue destination="83t-Qc-DmX" kind="show" identifier="Frenzy" id="T4m-CJ-ZQ7"/>
@@ -99,7 +101,7 @@
                                                     <constraint firstAttribute="width" constant="135" id="Vhe-S6-wa8"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" red="0.28385131248452317" green="0.53958042349481128" blue="0.70498609293193715" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rld-FC-GIN">
@@ -116,7 +118,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Mode to Play!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vLF-Ml-1Lj">
                                                 <rect key="frame" x="72" y="53" width="247" height="37.333333333333314"/>
                                                 <fontDescription key="fontDescription" name=".SFNSDisplay" family=".SF NS Display" pointSize="32"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" red="0.28385131250000001" green="0.53958042350000002" blue="0.70498609290000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uio-GJ-vt5">
@@ -129,11 +131,12 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created by Erik Wurman and Jason Nawrocki" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfG-Ge-szI">
                                 <rect key="frame" x="20" y="696.66666666666652" width="374" height="19.333333333333371"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.28385131250000001" green="0.53958042350000002" blue="0.70498609290000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.21639806937172779" green="0.21639806937172779" blue="0.21639806937172779" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="pfG-Ge-szI" secondAttribute="trailing" id="0Jr-Ka-Zob"/>
                             <constraint firstAttribute="leadingMargin" secondItem="pfG-Ge-szI" secondAttribute="leading" id="3Cp-Fe-1Q8"/>
@@ -199,7 +202,7 @@
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bup-gq-t2W">
                                         <rect key="frame" x="75.666666666666657" y="0.0" width="70.999999999999972" height="80"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <color key="backgroundColor" red="0.28385131250000001" green="0.53958042350000002" blue="0.70498609290000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                         <state key="normal" title="–"/>
                                         <connections>
@@ -209,12 +212,12 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f51-2n-Txb">
                                         <rect key="frame" x="151.66666666666666" y="0.0" width="70.666666666666686" height="80"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" red="0.28385131250000001" green="0.53958042350000002" blue="0.70498609290000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iXG-te-WAa">
                                         <rect key="frame" x="227.33333333333331" y="0.0" width="70.999999999999943" height="80"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <color key="backgroundColor" red="0.28385131250000001" green="0.53958042350000002" blue="0.70498609290000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                         <state key="normal" title="+"/>
                                         <connections>
@@ -257,11 +260,12 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of Players" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kC6-cN-dv7">
                                 <rect key="frame" x="104.33333333333331" y="224" width="205.33333333333337" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.28385131250000001" green="0.53958042350000002" blue="0.70498609290000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.2163980694" green="0.2163980694" blue="0.2163980694" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="leadingMargin" secondItem="Efq-fi-VAU" secondAttribute="leading" id="0KJ-UF-3eO"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Efq-fi-VAU" secondAttribute="trailing" id="5aS-Yl-8mF"/>
@@ -324,7 +328,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap Anywhere to Begin" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZUB-dL-6Yk">
                                 <rect key="frame" x="20" y="172" width="374" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yt4-9O-sQE">
@@ -375,19 +379,19 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: 0 " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eG0-ay-7Vm">
                                 <rect key="frame" x="20" y="112" width="374" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bYf-ds-kzI">
                                 <rect key="frame" x="20" y="662.66666666666652" width="374" height="31.333333333333371"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High Score: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7G2-Bi-A3P">
                                 <rect key="frame" x="20" y="64" width="374" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gvb-WK-iPo">
@@ -396,7 +400,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jIj-zl-3zP">
                                         <rect key="frame" x="290" y="0.0" width="76" height="42"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <state key="normal" title="Replay"/>
+                                        <state key="normal" title="Replay">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
                                         <connections>
                                             <action selector="replayGame:" destination="83t-Qc-DmX" eventType="touchUpInside" id="5Nt-b2-iXl"/>
                                         </connections>
@@ -412,7 +418,8 @@
                                 <rect key="frame" x="20" y="88" width="374" height="24"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.2163980694" green="0.2163980694" blue="0.2163980694" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="yt4-9O-sQE" firstAttribute="top" secondItem="ZUB-dL-6Yk" secondAttribute="bottom" id="4PI-rk-8vh"/>
