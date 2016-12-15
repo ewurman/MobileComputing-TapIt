@@ -26,22 +26,14 @@ class MenuViewController: UIViewController {
         let destinationvc = segue.destination
         if let gamevc = destinationvc as? GameViewController {
             if segue.identifier == "Single Player" {
-                gamevc.numPlayers = 1
+                gamevc.playerManager.numPlayers = 1
                 gamevc.setGameMode(mode: 0)
-            } else if segue.identifier == "Multiplayer"{ //TODO: leftover code. never occurs
-                gamevc.numPlayers = 3
-                gamevc.setGameMode(mode: 1)
             } else {
-                gamevc.numPlayers = 1
-                gamevc.setGameMode(mode: 2) 
-
+                gamevc.playerManager.numPlayers = 1
+                gamevc.setGameMode(mode: 2)
             }
-            
-            for i in 0 ..< gamevc.numPlayers! {
-                let p = Player()
-                p.name = "Player \(i + 1)"
-                gamevc.playersArray.append(p)
-            }
+            //Multiplayer done in the multiplayerViewController as it has a menu
+            gamevc.playerManager.initializePlayersArray()
 
         }
     }

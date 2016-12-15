@@ -19,6 +19,7 @@
 		9D4668FC1DD11B09000E23AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D4668FA1DD11B09000E23AA /* LaunchScreen.storyboard */; };
 		9D4669071DD11B09000E23AA /* TapItTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4669061DD11B09000E23AA /* TapItTests.swift */; };
 		9D4669121DD11B09000E23AA /* TapItUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4669111DD11B09000E23AA /* TapItUITests.swift */; };
+		9D70AC1B1E021470001CF0B1 /* PlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D70AC1A1E021470001CF0B1 /* PlayerManager.swift */; };
 		9DA20BFE1DFF42EA00702AAC /* MultiplayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA20BFD1DFF42EA00702AAC /* MultiplayerViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		9D46690D1DD11B09000E23AA /* TapItUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TapItUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D4669111DD11B09000E23AA /* TapItUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapItUITests.swift; sourceTree = "<group>"; };
 		9D4669131DD11B09000E23AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9D70AC1A1E021470001CF0B1 /* PlayerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerManager.swift; sourceTree = "<group>"; };
 		9DA20BFD1DFF42EA00702AAC /* MultiplayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,6 +117,7 @@
 				9DA20BFD1DFF42EA00702AAC /* MultiplayerViewController.swift */,
 				9D066C331DF48B8B00C884A5 /* GameView.swift */,
 				9D066C2F1DEF2C6200C884A5 /* GameViewController.swift */,
+				9D70AC1A1E021470001CF0B1 /* PlayerManager.swift */,
 				9D066C351DF87FCB00C884A5 /* HighScoreManager.swift */,
 				56CEA2AA1DF5FA9A00DA44DA /* Player.swift */,
 				9D066C311DEF3B7F00C884A5 /* GameManager.swift */,
@@ -285,6 +288,7 @@
 				9D066C361DF87FCB00C884A5 /* HighScoreManager.swift in Sources */,
 				9D066C321DEF3B7F00C884A5 /* GameManager.swift in Sources */,
 				56CEA2AB1DF5FA9A00DA44DA /* Player.swift in Sources */,
+				9D70AC1B1E021470001CF0B1 /* PlayerManager.swift in Sources */,
 				9D066C341DF48B8B00C884A5 /* GameView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,6 +12,6 @@ class Player {
     
     var name: String = ""
     
-    let manager: GameManager = GameManager()
+    var manager: GameManager = GameManager()
     
 }
