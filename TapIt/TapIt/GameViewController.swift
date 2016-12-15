@@ -248,8 +248,24 @@ class GameViewController: UIViewController {
     }
     
     func setInstruction(labelText: String){
+        var color = UIColor.white
+        if let round = playerManager.manager?.getRound() {
+            if labelText == "Tap red" {
+                color = round < 2 ? UIColor.red : redOrBlue()
+            }
+            if labelText == "Tap blue" {
+                color = round < 2 ? UIColor.blue : redOrBlue()
+            }
+        }
+        
+        instructionLabel.textColor = color
         instructionLabel.alpha = 1.0
         instructionLabel.text = labelText
+    }
+    
+    func redOrBlue() -> UIColor {
+        let colors = [UIColor.red, UIColor.blue]
+        return colors[Int(arc4random_uniform(UInt32(colors.count)))]
     }
     
     func setPlayerLabel() {
