@@ -10,6 +10,7 @@ import Foundation
 
 class PlayerManager {
     
+    var playerNames: [String]?
     var playersArray = [Player]()
     var numPlayers = 1
     
@@ -19,7 +20,8 @@ class PlayerManager {
     func initializePlayersArray() {
         for i in 0 ..< numPlayers {
             let p = Player()
-            p.name = "Player \(i + 1)"
+            p.name = (playerNames == nil) ? "Player \(i + 1)" : playerNames![i]
+            //p.name = "Player \(i + 1)"
             playersArray.append(p)
         }
         manager = playersArray[0].manager
